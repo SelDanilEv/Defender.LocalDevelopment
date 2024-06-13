@@ -11,13 +11,13 @@ WORKDIR /src
 
 ARG SERVICE_DIR
 
-COPY Code/$SERVICE_DIR/src/WebUI/WebUI.csproj WebUI/
-COPY Code/$SERVICE_DIR/src/Application/Application.csproj Application/
-COPY Code/$SERVICE_DIR/src/Domain/Domain.csproj Domain/
-COPY Code/$SERVICE_DIR/src/Infrastructure/Infrastructure.csproj Infrastructure/
+COPY Apps/$SERVICE_DIR/src/WebUI/WebUI.csproj WebUI/
+COPY Apps/$SERVICE_DIR/src/Application/Application.csproj Application/
+COPY Apps/$SERVICE_DIR/src/Domain/Domain.csproj Domain/
+COPY Apps/$SERVICE_DIR/src/Infrastructure/Infrastructure.csproj Infrastructure/
 
 RUN dotnet restore "WebUI/WebUI.csproj"
-COPY Code/$SERVICE_DIR/src .
+COPY Apps/$SERVICE_DIR/src .
 WORKDIR "/src/WebUI"
 RUN dotnet build "WebUI.csproj" -c Release -o /app/build
 
