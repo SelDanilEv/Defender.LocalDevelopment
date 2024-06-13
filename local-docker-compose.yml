@@ -3,7 +3,7 @@ services:
   local-identity-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.IdentityService
     image: local-identity-service
@@ -17,7 +17,7 @@ services:
   local-user-management-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.UserManagementService
     image: local-user-management-service
@@ -31,7 +31,7 @@ services:
   local-notification-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.NotificationService
     image: local-notification-service
@@ -45,7 +45,7 @@ services:
   local-portal:
     build:
       context: .
-      dockerfile: Dockerfiles/Portal_Dockerfile_local
+      dockerfile: Dockerfiles/Portal_Dockerfile
       args:
         SERVICE_DIR: Defender.Portal
     image: local-portal
@@ -59,7 +59,7 @@ services:
   local-walutomat-helper-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.WalutomatHelperService
     image: local-walutomat-helper-service
@@ -73,7 +73,7 @@ services:
   local-secret-management-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.SecretManagementService
     image: local-secret-management-service
@@ -87,7 +87,7 @@ services:
   local-job-scheduler-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.JobSchedulerService
     image: local-job-scheduler-service
@@ -101,7 +101,7 @@ services:
   local-wallet-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.WalletService
     image: local-wallet-service
@@ -115,7 +115,7 @@ services:
   local-general-testing-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.GeneralTestingService
     image: local-general-testing-service
@@ -129,7 +129,7 @@ services:
   local-risk-games-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Service_Dockerfile_local
+      dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.RiskGamesService
     image: local-risk-games-service
