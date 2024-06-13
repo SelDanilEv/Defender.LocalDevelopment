@@ -1,0 +1,151 @@
+# version: "3.8"
+services:
+  local-identity-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.IdentityService
+    image: local-identity-service
+    container_name: LocalIdentityService
+    ports:
+      - "47050:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-user-management-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.UserManagementService
+    image: local-user-management-service
+    container_name: LocalUserManagementService
+    ports:
+      - "47051:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-notification-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.NotificationService
+    image: local-notification-service
+    container_name: LocalNotificationService
+    ports:
+      - "47052:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-portal:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Portal_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.Portal
+    image: local-portal
+    container_name: LocalPortal
+    ports:
+      - "47053:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-walutomat-helper-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.WalutomatHelperService
+    image: local-walutomat-helper-service
+    container_name: LocalWalutomatHelperService
+    ports:
+      - "47055:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-secret-management-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.SecretManagementService
+    image: local-secret-management-service
+    container_name: LocalSecretManagementService
+    ports:
+      - "47056:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-job-scheduler-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.JobSchedulerService
+    image: local-job-scheduler-service
+    container_name: LocalJobSchedulerService
+    ports:
+      - "47057:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-wallet-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.WalletService
+    image: local-wallet-service
+    container_name: LocalWalletService
+    ports:
+      - "47058:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-general-testing-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.GeneralTestingService
+    image: local-general-testing-service
+    container_name: LocalGeneralTestingService
+    ports:
+      - "47059:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  local-risk-games-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile_local
+      args:
+        SERVICE_DIR: Defender.RiskGamesService
+    image: local-risk-games-service
+    container_name: LocalRiskGamesService
+    ports:
+      - "47060:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
