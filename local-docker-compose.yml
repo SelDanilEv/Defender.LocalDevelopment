@@ -140,12 +140,25 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
-  mongodb:
-    image: mongo
+  mongo_local:
+    container_name: "mongo_local"
+    image: mongo:7.0
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
     ports:
-      - "27017:27017"
+      - 27017:27017
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
     volumes:
-      - mongodb_data:/data/db
+      - "mongo_local_data:/data/db"
+      - "mongo_local_config:/data/configdb"
 
 volumes:
-  mongodb_data:
+  mongo_local_data:
+  mongo_local_config:
