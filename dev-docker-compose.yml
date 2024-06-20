@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.IdentityService
-    image: dev-identity-service
+    image: defendersd/dev-identity-service
     container_name: DevIdentityService
     ports:
       - "49050:80"
@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.UserManagementService
-    image: dev-user-management-service
+    image: defendersd/dev-user-management-service
     container_name: DevUserManagementService
     ports:
       - "49051:80"
@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.NotificationService
-    image: dev-notification-service
+    image: defendersd/dev-notification-service
     container_name: DevNotificationService
     ports:
       - "49052:80"
@@ -48,7 +48,7 @@ services:
       dockerfile: Dockerfiles/Portal_Dockerfile
       args:
         SERVICE_DIR: Defender.Portal
-    image: dev-portal
+    image: defendersd/dev-portal
     container_name: DevPortal
     ports:
       - "49053:80"
@@ -62,7 +62,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.WalutomatHelperService
-    image: dev-walutomat-helper-service
+    image: defendersd/dev-walutomat-helper-service
     container_name: DevWalutomatHelperService
     ports:
       - "49055:80"
@@ -76,7 +76,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.SecretManagementService
-    image: dev-secret-management-service
+    image: defendersd/dev-secret-management-service
     container_name: DevSecretManagementService
     ports:
       - "49056:80"
@@ -90,7 +90,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.JobSchedulerService
-    image: dev-job-scheduler-service
+    image: defendersd/dev-job-scheduler-service
     container_name: DevJobSchedulerService
     ports:
       - "49057:80"
@@ -104,7 +104,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.WalletService
-    image: dev-wallet-service
+    image: defendersd/dev-wallet-service
     container_name: DevWalletService
     ports:
       - "49058:80"
@@ -118,7 +118,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.GeneralTestingService
-    image: dev-general-testing-service
+    image: defendersd/dev-general-testing-service
     container_name: DevGeneralTestingService
     ports:
       - "49059:80"
@@ -132,7 +132,7 @@ services:
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.RiskGamesService
-    image: dev-risk-games-service
+    image: defendersd/dev-risk-games-service
     container_name: DevRiskGamesService
     ports:
       - "49060:80"
