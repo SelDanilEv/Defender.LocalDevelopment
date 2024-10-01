@@ -1,12 +1,24 @@
 # version: "3.8"
 services:
+  dev-https-portal:
+    image: steveltn/https-portal:latest
+    container_name: DevHttpsPortal
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAINS: "defender-portal.duckdns.org -> http://dev-portal:80"
+      STAGE: "production"
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+
   dev-identity-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.IdentityService
-    image: defendersd/dev-identity-service
+    image: dev-identity-service
     container_name: DevIdentityService
     ports:
       - "49050:80"
@@ -14,13 +26,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-user-management-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.UserManagementService
-    image: defendersd/dev-user-management-service
+    image: dev-user-management-service
     container_name: DevUserManagementService
     ports:
       - "49051:80"
@@ -28,13 +41,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-notification-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.NotificationService
-    image: defendersd/dev-notification-service
+    image: dev-notification-service
     container_name: DevNotificationService
     ports:
       - "49052:80"
@@ -42,13 +56,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-portal:
     build:
       context: .
       dockerfile: Dockerfiles/Portal_Dockerfile
       args:
         SERVICE_DIR: Defender.Portal
-    image: defendersd/dev-portal
+    image: dev-portal
     container_name: DevPortal
     ports:
       - "49053:80"
@@ -56,13 +71,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-walutomat-helper-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.WalutomatHelperService
-    image: defendersd/dev-walutomat-helper-service
+    image: dev-walutomat-helper-service
     container_name: DevWalutomatHelperService
     ports:
       - "49055:80"
@@ -70,13 +86,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-secret-management-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.SecretManagementService
-    image: defendersd/dev-secret-management-service
+    image: dev-secret-management-service
     container_name: DevSecretManagementService
     ports:
       - "49056:80"
@@ -84,13 +101,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-job-scheduler-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.JobSchedulerService
-    image: defendersd/dev-job-scheduler-service
+    image: dev-job-scheduler-service
     container_name: DevJobSchedulerService
     ports:
       - "49057:80"
@@ -98,13 +116,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-wallet-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.WalletService
-    image: defendersd/dev-wallet-service
+    image: dev-wallet-service
     container_name: DevWalletService
     ports:
       - "49058:80"
@@ -112,13 +131,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-general-testing-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.GeneralTestingService
-    image: defendersd/dev-general-testing-service
+    image: dev-general-testing-service
     container_name: DevGeneralTestingService
     ports:
       - "49059:80"
@@ -126,13 +146,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
   dev-risk-games-service:
     build:
       context: .
       dockerfile: Dockerfiles/Service_Dockerfile
       args:
         SERVICE_DIR: Defender.RiskGamesService
-    image: defendersd/dev-risk-games-service
+    image: dev-risk-games-service
     container_name: DevRiskGamesService
     ports:
       - "49060:80"
@@ -140,3 +161,21 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+
+  dev-budget-tracker-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile
+      args:
+        SERVICE_DIR: Defender.BudgetTracker
+    image: dev-budget-tracker-service
+    container_name: DevBudgetTrackerService
+    ports:
+      - "49061:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerDev
+    env_file:
+      - secrets/secrets.dev.list
+
+volumes:
+  https-portal-data:

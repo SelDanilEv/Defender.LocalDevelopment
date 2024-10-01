@@ -1,5 +1,17 @@
 # version: "3.8"
 services:
+  local-https-portal:
+    image: steveltn/https-portal:latest
+    container_name: LocalHttpsPortal
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAINS: "defender-portal-local.duckdns.org -> http://local-portal:80"
+      STAGE: "production"
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+
   local-identity-service:
     build:
       context: .
@@ -14,6 +26,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-user-management-service:
     build:
       context: .
@@ -28,6 +41,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-notification-service:
     build:
       context: .
@@ -42,6 +56,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-portal:
     build:
       context: .
@@ -56,6 +71,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-walutomat-helper-service:
     build:
       context: .
@@ -70,6 +86,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-secret-management-service:
     build:
       context: .
@@ -84,6 +101,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-job-scheduler-service:
     build:
       context: .
@@ -98,6 +116,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-wallet-service:
     build:
       context: .
@@ -112,6 +131,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-general-testing-service:
     build:
       context: .
@@ -126,6 +146,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
   local-risk-games-service:
     build:
       context: .
@@ -140,6 +161,22 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+
+  local-budget-tracker-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile
+      args:
+        SERVICE_DIR: Defender.BudgetTracker
+    image: local-budget-tracker-service
+    container_name: LocalBudgetTrackerService
+    ports:
+      - "47061:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
+
   mongo_local:
     container_name: "mongo_local"
     image: mongo:7.0
@@ -158,5 +195,6 @@ services:
       - "mongo_local_config:/data/configdb"
 
 volumes:
+  https-portal-data:
   mongo_local_data:
   mongo_local_config:
