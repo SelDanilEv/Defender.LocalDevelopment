@@ -1,2 +1,2 @@
 @echo off
-docker-compose -f dev-core-docker-compose.yml -p dev %*
+docker-compose -f dev-core-docker-compose.yml -p dev %* up -d --build
