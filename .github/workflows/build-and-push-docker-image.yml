@@ -3,7 +3,7 @@ name: Build and Publish Docker Image
 on:
   push:
     branches:
-      - main  # Publish when pushing to the main branch
+      - main-1  # Publish when pushing to the main branch
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
