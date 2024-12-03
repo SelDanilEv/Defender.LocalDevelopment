@@ -1,18 +1,5 @@
 # version: "3.8"
 services:
-  # As I have issues with DNS from cloudflare I will use http as of now
-  # dev-https-portal:
-  #   image: steveltn/https-portal:latest
-  #   container_name: DevHttpsPortal
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   environment:
-  #     DOMAINS: "defender-portal.coded-by-danil.dev -> http://dev-portal:80"
-  #     STAGE: "production"
-  #   volumes:
-  #     - https-portal-data:/var/lib/https-portal
-
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
@@ -21,6 +8,7 @@ services:
     environment:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_POLL_INTERVAL=300
+    restart: always
 
   dev-identity-service:
     image: defendersd/dev-identity-service
@@ -31,6 +19,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    restart: always
 
   dev-user-management-service:
     image: defendersd/dev-user-management-service
@@ -41,6 +30,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    restart: always
 
   dev-notification-service:
     image: defendersd/dev-notification-service
@@ -51,6 +41,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    restart: always
 
   dev-portal:
     image: defendersd/dev-portal
@@ -61,6 +52,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    restart: always
 
   dev-wallet-service:
     image: defendersd/dev-wallet-service
@@ -71,6 +63,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    restart: always
 
   dev-risk-games-service:
     image: defendersd/dev-risk-games-service
@@ -81,6 +74,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    restart: always
 
   dev-budget-tracker-service:
     image: defendersd/dev-budget-tracker-service
@@ -91,6 +85,4 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-
-volumes:
-  https-portal-data:
+    restart: always
