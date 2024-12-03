@@ -19,6 +19,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
 
   dev-user-management-service:
@@ -30,6 +31,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
 
   dev-notification-service:
@@ -41,6 +43,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
 
   dev-portal:
@@ -52,6 +55,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
 
   dev-wallet-service:
@@ -63,6 +67,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
 
   dev-risk-games-service:
@@ -74,6 +79,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
 
   dev-budget-tracker-service:
@@ -85,4 +91,5 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
+    network_mode: "host"
     restart: always
