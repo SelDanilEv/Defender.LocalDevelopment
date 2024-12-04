@@ -9,8 +9,6 @@ services:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_POLL_INTERVAL=60
     restart: always
-    networks:
-      - internal_apps_network
 
   dev-identity-service:
     image: defendersd/dev-identity-service
@@ -22,8 +20,6 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
 
@@ -37,8 +33,6 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
 
@@ -52,8 +46,6 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
 
@@ -67,8 +59,6 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
 
@@ -82,8 +72,6 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
 
@@ -97,8 +85,6 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
 
@@ -112,15 +98,5 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
-    networks:
-      - internal_apps_network
     dns:
       - 192.168.0.31
-
-networks:
-  internal_apps_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.21.0.0/16
-          gateway: 172.21.0.1
