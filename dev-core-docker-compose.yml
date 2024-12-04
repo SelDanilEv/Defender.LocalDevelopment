@@ -7,8 +7,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_POLL_INTERVAL=300
+      - WATCHTOWER_POLL_INTERVAL=60
     restart: always
+    networks:
+      - internal_apps_network
 
   dev-identity-service:
     image: defendersd/dev-identity-service
@@ -20,6 +22,10 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
 
   dev-user-management-service:
     image: defendersd/dev-user-management-service
@@ -31,6 +37,10 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
 
   dev-notification-service:
     image: defendersd/dev-notification-service
@@ -42,6 +52,10 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
 
   dev-portal:
     image: defendersd/dev-portal
@@ -53,6 +67,10 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
 
   dev-wallet-service:
     image: defendersd/dev-wallet-service
@@ -64,6 +82,10 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
 
   dev-risk-games-service:
     image: defendersd/dev-risk-games-service
@@ -75,6 +97,10 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
 
   dev-budget-tracker-service:
     image: defendersd/dev-budget-tracker-service
@@ -86,3 +112,15 @@ services:
     env_file:
       - secrets/secrets.dev.list
     restart: always
+    networks:
+      - internal_apps_network
+    dns:
+      - 192.168.0.31
+
+networks:
+  internal_apps_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1
