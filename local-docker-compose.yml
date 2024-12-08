@@ -102,20 +102,20 @@ services:
     env_file:
       - secrets/secrets.local.list
 
-  local-job-scheduler-service:
-    build:
-      context: .
-      dockerfile: Dockerfiles/Service_Dockerfile
-      args:
-        SERVICE_DIR: Defender.JobSchedulerService
-    image: local-job-scheduler-service
-    container_name: LocalJobSchedulerService
-    ports:
-      - "47057:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=DockerLocal
-    env_file:
-      - secrets/secrets.local.list
+  # local-job-scheduler-service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfiles/Service_Dockerfile
+  #     args:
+  #       SERVICE_DIR: Defender.JobSchedulerService
+  #   image: local-job-scheduler-service
+  #   container_name: LocalJobSchedulerService
+  #   ports:
+  #     - "47057:80"
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=DockerLocal
+  #   env_file:
+  #     - secrets/secrets.local.list
 
   local-wallet-service:
     build:
@@ -147,20 +147,20 @@ services:
     env_file:
       - secrets/secrets.local.list
 
-  local-risk-games-service:
-    build:
-      context: .
-      dockerfile: Dockerfiles/Service_Dockerfile
-      args:
-        SERVICE_DIR: Defender.RiskGamesService
-    image: local-risk-games-service
-    container_name: LocalRiskGamesService
-    ports:
-      - "47060:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=DockerLocal
-    env_file:
-      - secrets/secrets.local.list
+  # local-risk-games-service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfiles/Service_Dockerfile
+  #     args:
+  #       SERVICE_DIR: Defender.RiskGamesService
+  #   image: local-risk-games-service
+  #   container_name: LocalRiskGamesService
+  #   ports:
+  #     - "47060:80"
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=DockerLocal
+  #   env_file:
+  #     - secrets/secrets.local.list
 
   local-budget-tracker-service:
     build:
