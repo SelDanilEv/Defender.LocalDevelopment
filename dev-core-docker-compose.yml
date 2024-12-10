@@ -8,7 +8,7 @@ services:
     environment:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_POLL_INTERVAL=60
-    restart: always
+    restart: unless-stopped
 
   dev-identity-service:
     image: defendersd/dev-identity-service
@@ -19,7 +19,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
     dns:
       - 192.168.0.31
 
@@ -32,7 +32,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
     dns:
       - 192.168.0.31
 
@@ -45,7 +45,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
     dns:
       - 192.168.0.31
 
@@ -58,7 +58,20 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
+    dns:
+      - 192.168.0.31
+
+  dev-job-scheduler-service:
+    image: defendersd/dev-job-scheduler-service
+    container_name: DevJobSchedulerService
+    ports:
+      - "49057:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerDev
+    env_file:
+      - secrets/secrets.dev.list
+    restart: unless-stopped
     dns:
       - 192.168.0.31
 
@@ -71,7 +84,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
     dns:
       - 192.168.0.31
 
@@ -84,7 +97,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
     dns:
       - 192.168.0.31
 
@@ -97,6 +110,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerDev
     env_file:
       - secrets/secrets.dev.list
-    restart: always
+    restart: unless-stopped
     dns:
       - 192.168.0.31

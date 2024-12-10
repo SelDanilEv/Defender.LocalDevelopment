@@ -72,20 +72,20 @@ services:
     env_file:
       - secrets/secrets.local.list
 
-  local-walutomat-helper-service:
-    build:
-      context: .
-      dockerfile: Dockerfiles/Service_Dockerfile
-      args:
-        SERVICE_DIR: Defender.WalutomatHelperService
-    image: local-walutomat-helper-service
-    container_name: LocalWalutomatHelperService
-    ports:
-      - "47055:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=DockerLocal
-    env_file:
-      - secrets/secrets.local.list
+  # local-walutomat-helper-service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfiles/Service_Dockerfile
+  #     args:
+  #       SERVICE_DIR: Defender.WalutomatHelperService
+  #   image: local-walutomat-helper-service
+  #   container_name: LocalWalutomatHelperService
+  #   ports:
+  #     - "47055:80"
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=DockerLocal
+  #   env_file:
+  #     - secrets/secrets.local.list
 
   local-secret-management-service:
     build:
@@ -102,20 +102,20 @@ services:
     env_file:
       - secrets/secrets.local.list
 
-  # local-job-scheduler-service:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfiles/Service_Dockerfile
-  #     args:
-  #       SERVICE_DIR: Defender.JobSchedulerService
-  #   image: local-job-scheduler-service
-  #   container_name: LocalJobSchedulerService
-  #   ports:
-  #     - "47057:80"
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=DockerLocal
-  #   env_file:
-  #     - secrets/secrets.local.list
+  local-job-scheduler-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile
+      args:
+        SERVICE_DIR: Defender.JobSchedulerService
+    image: local-job-scheduler-service
+    container_name: LocalJobSchedulerService
+    ports:
+      - "47057:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
 
   local-wallet-service:
     build:
@@ -147,20 +147,20 @@ services:
     env_file:
       - secrets/secrets.local.list
 
-  # local-risk-games-service:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfiles/Service_Dockerfile
-  #     args:
-  #       SERVICE_DIR: Defender.RiskGamesService
-  #   image: local-risk-games-service
-  #   container_name: LocalRiskGamesService
-  #   ports:
-  #     - "47060:80"
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=DockerLocal
-  #   env_file:
-  #     - secrets/secrets.local.list
+  local-risk-games-service:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Service_Dockerfile
+      args:
+        SERVICE_DIR: Defender.RiskGamesService
+    image: local-risk-games-service
+    container_name: LocalRiskGamesService
+    ports:
+      - "47060:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    env_file:
+      - secrets/secrets.local.list
 
   local-budget-tracker-service:
     build:
@@ -176,25 +176,25 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+#
+#   mongo_local:
+#     container_name: "mongo_local"
+#     image: mongo:7.0
+#     command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+#     ports:
+#       - 27017:27017
+#     healthcheck:
+#       test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+#       interval: 5s
+#       timeout: 30s
+#       start_period: 0s
+#       start_interval: 1s
+#       retries: 30
+#     volumes:
+#       - "mongo_local_data:/data/db"
+#       - "mongo_local_config:/data/configdb"
 
-  mongo_local:
-    container_name: "mongo_local"
-    image: mongo:7.0
-    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
-    ports:
-      - 27017:27017
-    healthcheck:
-      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
-      interval: 5s
-      timeout: 30s
-      start_period: 0s
-      start_interval: 1s
-      retries: 30
-    volumes:
-      - "mongo_local_data:/data/db"
-      - "mongo_local_config:/data/configdb"
-
-volumes:
-  # https-portal-data:
-  mongo_local_data:
-  mongo_local_config:
+# volumes:
+#   https-portal-data:
+#   mongo_local_data:
+#   mongo_local_config:
