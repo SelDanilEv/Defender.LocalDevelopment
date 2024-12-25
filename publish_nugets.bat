@@ -6,12 +6,12 @@ Defender.Common.1.6.1.nupkg ^
 --source https://api.nuget.org/v3/index.json
 
 dotnet nuget push Apps/Defender.Kafka/src/Defender.Kafka/bin/Debug/^
-Defender.Kafka.8.0.4.nupkg ^
+Defender.Kafka.8.0.5.nupkg ^
 --api-key %API_KEY%  ^
 --source https://api.nuget.org/v3/index.json
 
 dotnet nuget push Apps/Defender.DistributedCache/src/Defender.DistributedCache/bin/Debug/^
-Defender.DistributedCache.0.1.4.nupkg ^
+Defender.DistributedCache.0.1.6.nupkg ^
 --api-key %API_KEY% ^
 --source https://api.nuget.org/v3/index.json
 
