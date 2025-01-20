@@ -1,4 +1,7 @@
-# version: "3.8"
+networks:
+  external-network:
+    external: true
+
 services:
   # local-https-portal:
   #   image: steveltn/https-portal:latest
@@ -26,6 +29,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-user-management-service:
     build:
@@ -41,6 +46,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-notification-service:
     build:
@@ -56,6 +63,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-portal:
     build:
@@ -71,6 +80,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   # local-walutomat-helper-service:
   #   build:
@@ -101,6 +112,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-job-scheduler-service:
     build:
@@ -116,6 +129,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-wallet-service:
     build:
@@ -131,6 +146,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-general-testing-service:
     build:
@@ -146,6 +163,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-risk-games-service:
     build:
@@ -161,6 +180,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 
   local-budget-tracker-service:
     build:
@@ -176,6 +197,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=DockerLocal
     env_file:
       - secrets/secrets.local.list
+    networks:
+      - external-network
 #
 #   mongo_local:
 #     container_name: "mongo_local"
