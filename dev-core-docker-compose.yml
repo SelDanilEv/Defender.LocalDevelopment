@@ -1,14 +1,16 @@
 # version: "3.8"
 services:
-  dev-portal-watchtower:
-    image: containrrr/watchtower
-    container_name: DevPortalWatchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_POLL_INTERVAL=60
-    restart: unless-stopped
+  # I'm using 1 instance of the watchtower container to update all of my services
+
+  # dev-portal-watchtower:
+  #   image: containrrr/watchtower
+  #   container_name: DevPortalWatchtower
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     - WATCHTOWER_CLEANUP=true
+  #     - WATCHTOWER_POLL_INTERVAL=60
+  #   restart: unless-stopped
 
   dev-identity-service:
     image: defendersd/dev-identity-service
