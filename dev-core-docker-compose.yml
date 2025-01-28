@@ -1,6 +1,6 @@
 # version: "3.8"
 services:
-  watchtower:
+  dev-portal-watchtower:
     image: containrrr/watchtower
     container_name: watchtower
     volumes:
