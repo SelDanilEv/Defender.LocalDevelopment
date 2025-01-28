@@ -2,7 +2,7 @@
 services:
   dev-portal-watchtower:
     image: containrrr/watchtower
-    container_name: watchtower
+    container_name: dev-portal-watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
