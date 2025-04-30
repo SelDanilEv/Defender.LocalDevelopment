@@ -3,18 +3,6 @@ networks:
     external: true
 
 services:
-  # local-https-portal:
-  #   image: steveltn/https-portal:latest
-  #   container_name: LocalHttpsPortal
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   environment:
-  #     DOMAINS: "defender-portal-local.duckdns.org -> http://local-portal:80"
-  #     STAGE: "production"
-  #   volumes:
-  #     - https-portal-data:/var/lib/https-portal
-
   local-identity-service:
     build:
       context: .
@@ -82,21 +70,6 @@ services:
       - secrets/secrets.local.list
     networks:
       - external-network
-
-  # local-walutomat-helper-service:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfiles/Service_Dockerfile
-  #     args:
-  #       SERVICE_DIR: Defender.WalutomatHelperService
-  #   image: local-walutomat-helper-service
-  #   container_name: LocalWalutomatHelperService
-  #   ports:
-  #     - "47055:80"
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=DockerLocal
-  #   env_file:
-  #     - secrets/secrets.local.list
 
   local-secret-management-service:
     build:
@@ -199,25 +172,82 @@ services:
       - secrets/secrets.local.list
     networks:
       - external-network
-#
-#   mongo_local:
-#     container_name: "mongo_local"
-#     image: mongo:7.0
-#     command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
-#     ports:
-#       - 27017:27017
-#     healthcheck:
-#       test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
-#       interval: 5s
-#       timeout: 30s
-#       start_period: 0s
-#       start_interval: 1s
-#       retries: 30
-#     volumes:
-#       - "mongo_local_data:/data/db"
-#       - "mongo_local_config:/data/configdb"
 
-# volumes:
-#   https-portal-data:
-#   mongo_local_data:
-#   mongo_local_config:
+  mongo_local:
+    container_name: "mongo_local"
+    image: mongo:7.0
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
+    volumes:
+      - "mongo_local_data:/data/db"
+      - "mongo_local_config:/data/configdb"
+
+  local-postgres-service:
+    image: postgres:latest
+    container_name: local-postgres-service
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cache_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - external-network
+
+  local-zookeeper:
+    image: wurstmeister/zookeeper:latest
+    container_name: local-zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - external-network
+
+  local-kafka-service:
+    image: wurstmeister/kafka:latest
+    container_name: local-kafka-service
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=local-zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://local-kafka-service:9092
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
+    ports:
+      - "9092:9092"
+    networks:
+      - external-network
+
+  local-kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: local-kafka-ui
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=local-kafka-service:9092
+    networks:
+      - external-network
+
+  local-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: local-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    networks:
+      - external-network
+
+volumes:
+  mongo_local_data:
+  mongo_local_config:
+  postgres_data:

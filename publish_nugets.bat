@@ -13,7 +13,7 @@ Defender.Kafka.8.0.5.nupkg ^
 --skip-duplicate
 
 dotnet nuget push Apps/Defender.DistributedCache/src/Defender.DistributedCache/bin/Debug/^
-Defender.DistributedCache.0.1.7.nupkg ^
+Defender.DistributedCache.0.1.8.nupkg ^
 --api-key %API_KEY% ^
 --source https://api.nuget.org/v3/index.json ^
 --skip-duplicate
