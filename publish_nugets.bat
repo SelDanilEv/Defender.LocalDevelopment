@@ -7,7 +7,7 @@ Defender.Common.1.6.3.nupkg ^
 --skip-duplicate
 
 dotnet nuget push Apps/Defender.Kafka/src/Defender.Kafka/bin/Debug/^
-Defender.Kafka.8.0.5.nupkg ^
+Defender.Kafka.8.0.6.nupkg ^
 --api-key %API_KEY% ^
 --source https://api.nuget.org/v3/index.json ^
 --skip-duplicate
