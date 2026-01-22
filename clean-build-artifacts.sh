@@ -23,6 +23,7 @@ FOLDERS_TO_REMOVE=(
     "build"
     "packages"
     ".angular"
+    ".next"
 )
 
 FILES_TO_REMOVE=(
